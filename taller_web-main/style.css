@@ -1,0 +1,405 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia;
+    margin: 0;
+    padding: 0;
+    background-color: #008B8B;
+    color: white;
+}
+
+.main {
+    display: grid;
+    grid-template-areas:
+        "sidebar content"
+        "sidebar content"
+        "sidebar footer";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100vh;
+}
+
+/* Begin Sidebar */
+
+.sidebar {
+    display: flex;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    grid-area: sidebar;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-right: 30px;
+}
+
+.sidebar li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.sidebar li a:hover {
+    background-color: white;
+    color: black;
+}
+
+
+/* End Sidebar */
+
+/* Begin Content */
+
+.content {
+    grid-area: content;
+    /* background-color: yellow; */
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* Begin Home */
+.home {
+    position: relative;
+    align-items: center;
+    display: flex;
+    /* Agregamos display:flex */
+    padding: 20px;
+    height: 100vh;
+}
+
+/* Añadimos contenido estetico en su primer hijo, logramos que solo se opaque el fondo*/
+.home::before {
+    content: "";
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(img/Julian.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    /* Agregamos la opacidad */
+    z-index: -1;
+    animation: moveBackground 20s linear infinite;
+}
+
+/* Animacion */
+
+@keyframes moveBackground {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100% 0;
+    }
+}
+
+/* End Home */
+
+/* Begin About */
+
+.about {
+    padding: 30px;
+    animation-name: work1;
+  animation-duration: 4s;
+}
+
+.about-grid {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    grid-template-rows: auto;
+    justify-content: center;
+    align-content: center;
+    align-items: start;
+}
+
+.work{
+    animation-name: work1;
+  animation-duration: 4s;
+}
+
+@keyframes work1 {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.about-grid .work ul {
+    padding-left: 40px;
+    overflow: relative;
+    text-decoration: none;
+}
+
+.about-grid ul li {
+    position: relative;
+}
+
+.about-grid .work ul {
+    list-style: none;
+}
+
+.about-grid .work ul li:before {
+    content: "";
+  position: absolute;
+  top: 5px;
+  left: -25px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+}
+
+.about-grid .work ul li:after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: -21px;
+  width: 2px;
+  height: 120px;
+  background: #ffffff;
+}
+
+
+/* End About */
+
+/* Begin Skills*/
+
+
+.skills-grid {
+    display: grid;
+    grid-gap: 30px;
+    padding: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    grid-template-rows: auto;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.lenguaje {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nombre {
+    position: absolute;
+    width: 100px;
+    margin-right: 20px;
+}
+
+.barra-progreso {
+    height: 25px;
+    background-color: #d66464;
+    border-radius: 10px;
+    margin-left: 100px;
+    /* Establecemos el radio de los bordes en 10px */
+}
+
+.porcentaje {
+    margin-left: 10px;
+}
+
+/* End Skills*/
+
+/* Begin Projects */
+
+
+.projects-grid {
+    display: grid;
+    grid-gap: 30px;
+    padding: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    grid-template-rows: auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.projects-items {
+    justify-content: center;
+    align-items: center;
+    border-color: #ffffff;
+}
+
+.projects-items a.target {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.projects-items a.target:hover {
+    transform: scale(1.1);
+}
+
+.projects-items img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    /* Ajusta el valor según el grado de redondez deseado */
+    transition: transform 0.3s ease;
+}
+
+.projects-items h3 {
+    margin: 0;
+    text-align: center;
+}
+
+
+/* End Projects */
+
+/* End Content */
+
+/* Begin Footer */
+
+.footer {
+    grid-area: footer;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+}
+
+/* End Footer */
+
+
+/* Begin Menu  */
+
+.nav {
+    display: none;
+}
+
+/* Estilos para la ventana menor que 600px */
+@media (max-width: 1170px) {
+
+    .nav {
+        position: fixed;
+        padding: 0 300px;
+        height: 80px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Ocultar el menú y mostrar el botón */
+    .nav__links {
+        display: none;
+    }
+
+    .nav__icon {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        border: none;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+    }
+
+    /* Mostrar el menú desplegable */
+
+    .menu_desplegable {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu_desplegable a {
+
+        display: block;
+        margin-top: 10px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+
+    .nav__links:target .menu_desplegable {
+        display: fixed;
+        clip-path: none;
+    }
+
+    /* Ocultar el menú al hacer clic en el botón o en cualquier enlace */
+    .nav__links:target .menu_desplegable:target,
+    .nav__links:target .menu_desplegable a:target {
+        display: none;
+        clip-path: circle(0% at top left);
+    }
+}
+
+/* Estilos para los enlaces del menú */
+.nav_link {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Estilos para el menú desplegable */
+.nav__links {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    background-color: #000000;
+    display: block;
+    place-items: center;
+    clip-path: circle(0% at top left);
+    transition: clip-path .4s;
+    text-align: center;
+    padding: 10px;
+
+}
+
+.nav__links:target {
+    clip-path: circle(150% at top left);
+}
+
+.nav__links:target:hover {
+    opacity: 100%;
+    transition: opacity 1s;
+}
+
+.class__target img {
+    filter: grayscale(100%) brightness(200%) invert(100%);
+}
+
+#particles-js {
+    display: fixed;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* End Menu */
+@media (max-width: 1170px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        grid-template-areas:
+            "content"
+            "content"
+            "footer"
+        ;
+        grid-template-columns: minmax(375px, 1fr);
+    }
+}
